@@ -1,79 +1,77 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-
-<title>ITDS Security Dashboard</title>
-
-<link rel="stylesheet" href="/static/css/style.css">
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ITDS Security Dashboard</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
 </head>
-
 <body>
 
-<h1>Insider Threat Detection System</h1>
+    <header>
+        <h1>🛡️ Insider Threat Detection System</h1>
+        <div id="status-indicator">● System Live</div>
+    </header>
 
-<div class="cards">
+    <div class="stats-container">
+        <div class="card">
+            <h3>Total Logins</h3>
+            <p id="logins" class="stat-value">0</p>
+        </div>
+        <div class="card">
+            <h3>Files Accessed</h3>
+            <p id="files" class="stat-value">0</p>
+        </div>
+        <div class="card">
+            <h3>Network Activity</h3>
+            <p id="network" class="stat-value">0</p>
+        </div>
+    </div>
 
-<div class="card">
-<h3>Total Logins</h3>
-<p id="logins">0</p>
-</div>
+    <div class="dashboard-grid">
+        <section class="table-section">
+            <h2>⚠️ Recent Alerts</h2>
+            <div class="table-wrapper">
+                <table id="alertsTable">
+                    <thead>
+                        <tr>
+                            <th>User</th>
+                            <th>Alert Type</th>
+                            <th>Score</th>
+                            <th>Severity</th>
+                            <th>Timestamp</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </section>
 
-<div class="card">
-<h3>Files Accessed</h3>
-<p id="files">0</p>
-</div>
+        <section class="table-section">
+            <h2>👤 Top Risky Users</h2>
+            <div class="table-wrapper">
+                <table id="riskTable">
+                    <thead>
+                        <tr>
+                            <th>User</th>
+                            <th>Total Risk Score</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </section>
+    </div>
 
-<div class="card">
-<h3>Network Connections</h3>
-<p id="network">0</p>
-</div>
+    <section class="chart-section">
+        <h2>📈 Alerts Over Time</h2>
+        <div class="chart-container">
+            <canvas id="alertsChart"></canvas>
+        </div>
+    </section>
 
-</div>
-
-<h2>Recent Alerts</h2>
-
-<table id="alertsTable">
-
-<thead>
-<tr>
-<th>User</th>
-<th>Alert Type</th>
-<th>Score</th>
-<th>Severity</th>
-<th>Timestamp</th>
-</tr>
-</thead>
-
-<tbody></tbody>
-
-</table>
-
-<h2>Top Risky Users</h2>
-
-<table id="riskTable">
-
-<thead>
-<tr>
-<th>User</th>
-<th>Alerts</th>
-<th>Risk Score</th>
-</tr>
-</thead>
-
-<tbody></tbody>
-
-</table>
-
-<h2>Alerts Over Time</h2>
-
-<canvas id="alertsChart"></canvas>
-
-<script src="/static/js/dashboard.js"></script>
-
+    <script src="/static/js/dashboard.js"></script>
 </body>
 </html>

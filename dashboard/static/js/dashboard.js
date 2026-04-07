@@ -9,46 +9,41 @@ document.getElementById("network").innerText = data.network
 
 }
 
-async function loadAlerts(){
+async function loadRisk(){
+    let res = await fetch('/risk_scores');
+    let users = await res.json();
 
-let res = await fetch('/alerts')
-let alerts = await res.json()
+    let table = document.querySelector("#riskTable tbody");
+    table.innerHTML = "";
 
-let table = document.querySelector("#alertsTable tbody")
-table.innerHTML = ""
-
-alerts.forEach(a=>{
-
-let row = table.insertRow()
-
-row.insertCell(0).innerText = a[0]
-row.insertCell(1).innerText = a[1]
-row.insertCell(2).innerText = a[2]
-row.insertCell(3).innerText = a[3]
-row.insertCell(4).innerText = a[4]
-
-})
-
+    users.forEach(u => {
+    let row = table.insertRow();
+    row.insertCell(0).innerText = u.username;
+    row.insertCell(1).innerText = u.risk_score;
+    
+    if (u.risk_score > 10) row.style.backgroundColor = "#fff5f5";
+});
 }
 
-async function loadRisk(){
+// In loadAlerts, make sure you match the number of columns in your HTML
+async function loadAlerts(){
+    let res = await fetch('/alerts');
+    let alerts = await res.json();
+    let table = document.querySelector("#alertsTable tbody");
+    table.innerHTML = "";
 
-let res = await fetch('/risk_scores')
-let users = await res.json()
+    alerts.forEach(a => {
+    let row = table.insertRow();
+    row.insertCell(0).innerText = a[0]; // User
+    row.insertCell(1).innerText = a[1]; // Type
+    row.insertCell(2).innerText = a[2]; // Score
+    
+    let sevCell = row.insertCell(3);
+    sevCell.innerText = a[3]; // Severity
+    sevCell.className = "sev-" + a[3]; // Adds class sev-HIGH, sev-MEDIUM, etc.
 
-let table = document.querySelector("#riskTable tbody")
-table.innerHTML=""
-
-users.forEach(u=>{
-
-let row = table.insertRow()
-
-row.insertCell(0).innerText = u[0]
-row.insertCell(1).innerText = u[1]
-row.insertCell(2).innerText = u[2]
-
-})
-
+    row.insertCell(4).innerText = a[4]; // Time
+});
 }
 
 async function loadGraph(){

@@ -1,23 +1,12 @@
 {
-    "employee1": {
+    "Kathyashree Shanbhogue": {
         "standard_work_hours": {
             "start": 8,
             "end": 19
         },
-        "average_login_hour": 17.27,
-        "login_hour_std": 1.86,
-        "average_files_per_hour": 0,
-        "files_per_hour_std": 0,
-        "weekend_activity_count": 0
-    },
-    "sushrutha-VirtualBox": {
-        "standard_work_hours": {
-            "start": 8,
-            "end": 19
-        },
-        "average_login_hour": 14.64,
-        "login_hour_std": 0.5,
-        "average_files_per_hour": 48.0,
+        "average_login_hour": 15.0,
+        "login_hour_std": NaN,
+        "average_files_per_hour": 2.0,
         "files_per_hour_std": NaN,
         "weekend_activity_count": 0
     }

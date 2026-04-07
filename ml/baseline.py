@@ -8,7 +8,7 @@ import os
 # ===============================
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-DB_PATH = os.path.join(BASE_DIR, "/home/sushrutha/Desktop/ITDS/database/itds.db")
+DB_PATH = os.path.normpath(os.path.join(BASE_DIR, "..", "database", "itds.db"))
 
 conn = sqlite3.connect(DB_PATH)
 

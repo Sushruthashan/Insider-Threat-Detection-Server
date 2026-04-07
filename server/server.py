@@ -41,23 +41,24 @@ def insert_event(user, event_type, value):
 @app.route("/log", methods=["POST"])
 def receive_log():
     data = request.get_json()
-
-    if not data:
-        return jsonify({"status": "error", "message": "No JSON received"}), 400
-
     user = data.get("user")
     event_type = data.get("event_type")
-    value = data.get("value")
+    value = data.get("value", "")
 
+    # 1. Save to DB
     insert_event(user, event_type, value)
 
-    print(f"[LOG RECEIVED] {user} | {event_type} | {value}")
-
-    # Trigger anomaly detection (non-blocking)
-    subprocess.Popen(["python3", "../ml/anomaly_detector.py"])
+    # 2. Optimized Trigger: Pass data as CLI arguments
+    # sys.executable ensures we use the same python environment
+    subprocess.Popen([
+        sys.executable, 
+        os.path.join(BASE_DIR, "../ml/anomaly_detector.py"),
+        str(user), 
+        str(event_type), 
+        str(value)
+    ])
 
     socketio.emit('new_log', {"user": user, "event": event_type})
-
     return jsonify({"status": "success"}), 200
 
 
