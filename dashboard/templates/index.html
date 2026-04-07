@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>ITDS Security Dashboard</title>
+
+<link rel="stylesheet" href="/static/css/style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+
+</head>
+
+<body>
+
+<h1>Insider Threat Detection System</h1>
+
+<div class="cards">
+
+<div class="card">
+<h3>Total Logins</h3>
+<p id="logins">0</p>
+</div>
+
+<div class="card">
+<h3>Files Accessed</h3>
+<p id="files">0</p>
+</div>
+
+<div class="card">
+<h3>Network Connections</h3>
+<p id="network">0</p>
+</div>
+
+</div>
+
+<h2>Recent Alerts</h2>
+
+<table id="alertsTable">
+
+<thead>
+<tr>
+<th>User</th>
+<th>Alert Type</th>
+<th>Score</th>
+<th>Severity</th>
+<th>Timestamp</th>
+</tr>
+</thead>
+
+<tbody></tbody>
+
+</table>
+
+<h2>Top Risky Users</h2>
+
+<table id="riskTable">
+
+<thead>
+<tr>
+<th>User</th>
+<th>Alerts</th>
+<th>Risk Score</th>
+</tr>
+</thead>
+
+<tbody></tbody>
+
+</table>
+
+<h2>Alerts Over Time</h2>
+
+<canvas id="alertsChart"></canvas>
+
+<script src="/static/js/dashboard.js"></script>
+
+</body>
+</html>
