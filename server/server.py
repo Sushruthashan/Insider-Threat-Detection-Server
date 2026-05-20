@@ -7,7 +7,11 @@ import sys
 import subprocess
 
 # Fix import path for ML module
-sys.path.append(os.path.abspath("../ml"))
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+ML_PATH = os.path.normpath(os.path.join(BASE_DIR, "../ml"))
+
+sys.path.append(ML_PATH)
+
 from risk_scoring import calculate_risk_scores
 
 # Fix Flask static + template folders
