@@ -1,0 +1,10 @@
+flask
+flask-socketio
+eventlet
+pandas
+numpy
+scikit-learn
+psutil
+watchdog
+requests
+pynput

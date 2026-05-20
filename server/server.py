@@ -44,6 +44,8 @@ def receive_log():
     user = data.get("user")
     event_type = data.get("event_type")
     value = data.get("value", "")
+    
+    print(f"[LOG RECEIVED] {user} | {event_type} | {value}")
 
     # 1. Save to DB
     insert_event(user, event_type, value)
@@ -78,7 +80,7 @@ def get_alerts():
     cursor = conn.cursor()
 
     cursor.execute("""
-        SELECT username, alert_type, anomaly_score, severity, timestamp
+        SELECT username, alert_type, details, anomaly_score, severity, timestamp
         FROM alerts
         ORDER BY timestamp DESC
         LIMIT 20

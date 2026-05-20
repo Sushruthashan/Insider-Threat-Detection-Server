@@ -4,74 +4,191 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ITDS Security Dashboard</title>
+
     <link rel="stylesheet" href="/static/css/style.css">
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
 </head>
+
 <body>
 
     <header>
+
+        <div class="menu-container">
+            <button id="anomalyBtn">☰ Anomaly Rules</button>
+        </div>
+
         <h1>🛡️ Insider Threat Detection System</h1>
-        <div id="status-indicator">● System Live</div>
+
+        <div id="status-indicator">
+            ● System Live
+        </div>
+
     </header>
 
+    <!-- ========================= -->
+    <!-- STATS CARDS -->
+    <!-- ========================= -->
+
     <div class="stats-container">
+
         <div class="card">
             <h3>Total Logins</h3>
             <p id="logins" class="stat-value">0</p>
         </div>
+
         <div class="card">
             <h3>Files Accessed</h3>
             <p id="files" class="stat-value">0</p>
         </div>
+
         <div class="card">
             <h3>Network Activity</h3>
             <p id="network" class="stat-value">0</p>
         </div>
+
     </div>
 
+    <!-- ========================= -->
+    <!-- DASHBOARD TABLES -->
+    <!-- ========================= -->
+
     <div class="dashboard-grid">
+
+        <!-- ALERTS TABLE -->
+
         <section class="table-section">
+
             <h2>⚠️ Recent Alerts</h2>
+
             <div class="table-wrapper">
+
                 <table id="alertsTable">
+
                     <thead>
                         <tr>
                             <th>User</th>
                             <th>Alert Type</th>
+                            <th>Details</th>
                             <th>Score</th>
                             <th>Severity</th>
                             <th>Timestamp</th>
                         </tr>
                     </thead>
+
                     <tbody></tbody>
+
                 </table>
+
             </div>
+
         </section>
 
+        <!-- RISK TABLE -->
+
         <section class="table-section">
+
             <h2>👤 Top Risky Users</h2>
+
             <div class="table-wrapper">
+
                 <table id="riskTable">
+
                     <thead>
                         <tr>
                             <th>User</th>
                             <th>Total Risk Score</th>
                         </tr>
                     </thead>
+
                     <tbody></tbody>
+
                 </table>
+
             </div>
+
         </section>
+
     </div>
 
+    <!-- ========================= -->
+    <!-- ALERT GRAPH -->
+    <!-- ========================= -->
+
     <section class="chart-section">
+
         <h2>📈 Alerts Over Time</h2>
+
         <div class="chart-container">
             <canvas id="alertsChart"></canvas>
         </div>
+
     </section>
 
+    <!-- ========================= -->
+    <!-- ANOMALY MODAL -->
+    <!-- ========================= -->
+
+    <div id="anomalyModal" class="modal">
+
+        <div class="modal-content">
+
+            <span class="close-btn">&times;</span>
+
+            <h2>Insider Threat Detection Rules</h2>
+
+            <!-- ANOMALY LIST -->
+
+            <div class="anomaly-list">
+
+                <div class="anomaly-item" onclick="showAnomalyDetails('login')">
+                    Login Time Anomaly
+                </div>
+
+                <div class="anomaly-item" onclick="showAnomalyDetails('file')">
+                    High File Access Rate
+                </div>
+
+                <div class="anomaly-item" onclick="showAnomalyDetails('login_spike')">
+                    Login Frequency Spike
+                </div>
+
+                <div class="anomaly-item" onclick="showAnomalyDetails('offhours')">
+                    Off-Hours Login
+                </div>
+
+                <div class="anomaly-item" onclick="showAnomalyDetails('sensitive')">
+                    Sensitive File Access
+                </div>
+
+                <div class="anomaly-item" onclick="showAnomalyDetails('postlogin')">
+                    Post-Login File Surge
+                </div>
+
+                <div class="anomaly-item" onclick="showAnomalyDetails('mouse')">
+                    Suspicious Mouse Activity
+                </div>
+
+            </div>
+
+            <!-- DETAILS PANEL -->
+
+            <div id="anomalyDetails">
+
+                <h3>Select an anomaly rule</h3>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ========================= -->
+    <!-- JAVASCRIPT -->
+    <!-- ========================= -->
+
     <script src="/static/js/dashboard.js"></script>
+
 </body>
 </html>

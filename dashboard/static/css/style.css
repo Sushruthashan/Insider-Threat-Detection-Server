@@ -109,3 +109,77 @@ td {
     height: 300px;
     position: relative;
 }
+
+/* ========================= */
+/* MODAL */
+/* ========================= */
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    background: white;
+    margin: 5% auto;
+    padding: 25px;
+    width: 70%;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.close-btn {
+    float: right;
+    font-size: 28px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.menu-container button {
+    padding: 10px 18px;
+    border: none;
+    background: #2c3e50;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.menu-container button:hover {
+    background: #1f2d3a;
+}
+
+.anomaly-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.anomaly-item {
+    background: #f4f6f8;
+    padding: 12px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+    font-weight: 500;
+}
+
+.anomaly-item:hover {
+    background: #dfe6ec;
+}
+
+#anomalyDetails {
+    margin-top: 25px;
+    padding: 20px;
+    background: #fafafa;
+    border-radius: 10px;
+    border-left: 5px solid #2c3e50;
+}
